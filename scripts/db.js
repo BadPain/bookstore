@@ -177,7 +177,7 @@ let books = [
 
 
 
-
+// Array
 let allBookNames = [];
 books.forEach(book => allBookNames.push(book.name));
 console.log(allBookNames);
@@ -192,42 +192,13 @@ console.log(allpublishedYearNames);
 
 
 
-// let bookName = books;
 
-// let allBookNames = [];
+// For-Schleife
+let allAuthorNames2 = [];
 
-// bookName.forEach(books => allBookNames.push(books.name));
+for (let i = 0; i < books.length; i++) {
+    allAuthorNames.push(books[i].author);
+}
 
-// console.log(allBookNames);
-
-
-
-
-
-
-// let bookAuthor = books[2].author;
-// console.log(books[2].author);
-
-
-
-// let allAuthorNames = [];
-
-// bookAuthor.forEach(books => allAuthorNames.push(books.author));
-
-// console.log(allAuthorNames);
-
-
-
-//   for (let i = 0; i < books[3].name; i++) {
-//     console.log([i]);
-    
-// }
-
-
-// function bookView(book, index) {
-//     return `
-//     <div class="bookViewClass">
-        
-//     </div>`;
-// }
+console.log(allAuthorNames);
   
