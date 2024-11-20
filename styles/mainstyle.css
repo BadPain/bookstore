@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+.max-width-class {
+    padding-left: 30px;
+    max-width: 1440px;
+    margin: auto;
+}

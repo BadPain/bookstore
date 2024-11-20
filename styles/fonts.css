@@ -1,0 +1,15 @@
+.headlineH1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.headlineH3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
