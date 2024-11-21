@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
 
+    <link rel="icon" type="image/x-icon" href="./img/icons/fav.png">
     <!-- style -->
     <link rel="stylesheet" href="./styles/mainstyle.css">
     <link rel="stylesheet" href="./styles/fonts.css">
@@ -16,21 +17,55 @@
 
 </head>
 
-<body class=".max-width-class">
+<body class="max-width-class" onload="renderBooks()">
     <header>
 
     </header>
     <section class="mainsection">
         <h1 class="headlineH1">Bookstore</h1>
     </section>
-    <section>
+    <section class="content_Class">
         <p class="headlineH3">Books</p>
-        <div id="content">
-
-        </div>
-
+        <div class="bookViewClass" id="content"></div>
+        <br>
+        <br>
+        <br>
     </section>
 
+
+    <!-- TEST BOOK SECTION -->
+    <section class="bookViewClass">
+
+        <div class="book_Name">${books[1].name}</div>
+        <hr>
+        <div class="book_Icon_Class">
+            <img class="book_Icon" src="./img/icons/book_icon.svg" alt="">
+        </div>
+        <hr>
+        <div class="book_Liked">
+            <p class="book_Price">${books[1].price}</p>
+            <div class="book_New_Liked">
+                <p>${books[1].likes}</p>
+                <img class="book_heart" src="./img/icons/heart_on.svg" alt="">
+                <img class="book_heart" src="./img/icons/heart_off.svg" alt="">
+            </div>
+        </div>
+        <div class="book_Infos_Main">
+            <div class="book_Infos">
+                <span>Author</span>
+                <span>Erscheiungsjahr</span>
+                <span>Genre</span>
+            </div>
+            <div class="book_Infos_Script">
+                <p>: ${books[1].author}</p>
+                <p>: ${books[1].publishedYear}</p>
+                <p>: ${books[1].genre}</p>
+            </div>
+        </div>
+        <hr>
+
+        <p class="comment">Kommentare:</p>
+    </section>
 </body>
 
 </html>

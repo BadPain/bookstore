@@ -9,7 +9,6 @@ a {
 }
 
 .max-width-class {
-    padding-left: 30px;
     max-width: 1440px;
     margin: auto;
 }
