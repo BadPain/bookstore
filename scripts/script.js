@@ -38,7 +38,9 @@ function renderBooks() {
             </div>
         </div>
         <hr>
-
-        <p class="comment">Kommentare:</p>
+        <div>
+            <p class="comment" id="comment_section">Kommentare:</p>
+            <p>${books[1].comments}</p>
+        </div>
     </section>`;
 }  
