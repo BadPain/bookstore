@@ -34,7 +34,7 @@
 
 
     <!-- TEST BOOK SECTION -->
-    <section class="bookViewClass">
+    <!-- <section class="bookViewClass">
 
         <div class="book_Name">${books[1].name}</div>
         <hr>
@@ -65,9 +65,16 @@
         <hr>
         <div>
             <p class="comment" id="comment_section">Kommentare:</p>
-            <p>${books[1].genre}</p>
+            <div class="comment_Input_Section">
+                <p id="comment_Input_Name" class="comment_Input_Name">Name: <input type="text"></p>
+                <p id="comment_Input_Message" class="comment_Input_Message">Message: <input type="text"></p>
+            </div>
+            <div class="comments">
+                <p>${books[2].comments[2].name}</p>
+                <p>${books[2].comments[2].comment}</p>
+            </div>
         </div>
-    </section>
+    </section> -->
 </body>
 
 </html>
