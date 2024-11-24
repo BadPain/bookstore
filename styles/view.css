@@ -1,9 +1,16 @@
+/* .content_Class{
+    background-color: rgb(5,23,30);
+    height: auto;
+    width: 100%;
+} */
+
 .bookViewClass {
     margin: auto;
     font-size: 16px;
     height: 600px;
     width: 400px;
-    background-color: blanchedalmond;
+    background-color: rgb(25, 89, 113);
+    color: rgb(205,219,218);
     border-radius: 10px;
 }
 
@@ -27,7 +34,7 @@
 }
 
 .book_Price {
-    color: red;
+    color: rgb(83, 248, 149) !important;
     font-size: 30px;
     font-weight: bold;
 }

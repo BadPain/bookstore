@@ -1,12 +1,33 @@
 function init() {
     renderBooks();
+    getBookTemplate();
+    getCommentTemplate();
 }
 
 function renderBooks() {
     let booksContent = document.getElementById('content');
+
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
         booksContent.innerHTML += getBookTemplate(indexBook);
     };
+}
+
+function renderComment(bookIndex) {
+    let CommentContent = document.getElementById('comment_content');
+    CommentContent.innerHTML = "";
+    let comments = books[bookIndex].comments;
+
+    for (let indexComment = 0; indexComment < comments.length; indexComment++) {
+        CommentContent.innerHTML += getCommentTemplate(bookIndex, indexComment);
+    };
+}
+
+function getCommentTemplate(bookIndex, indexComment) {
+    let comment = books[bookIndex].comments[indexComment];
+    return `<div class="comment_section">
+    <p class="comment" id="comment_section">Kommentare:</p>
+    <p><strong>${comment.name}:</strong> ${comment.comment}</p>
+    </div>`;
 }
 
 function getBookTemplate(indexBook) {
@@ -19,7 +40,7 @@ function getBookTemplate(indexBook) {
         </div>
         <hr>
         <div class="book_Liked">
-            <p class="book_Price">${books[indexBook].price}</p>
+            <p class="book_Price">${books[indexBook].price} €</p>
             <div class="book_New_Liked">
                 <p>${books[indexBook].likes}</p>
                 <img class="book_heart" src="./img/icons/heart_on.svg" alt="">
@@ -39,18 +60,9 @@ function getBookTemplate(indexBook) {
             </div>
         </div>
         <hr>
-        <div>
-            
-        </div>
+        <br>
+
     </section>
     <br>
-    <br>`
+    <br>`;
 }
-
-// function getCommentTemplate(indexBook, indexComment) {
-//     return `
-//     <p class="comment" id="comment_section">Kommentare:</p>
-//     <p>${books[indexBook].comments[indexComment].name}</p>
-//     <p>${books[indexBook].comments[indexComment].comment}</p>
-//     `
-// }
