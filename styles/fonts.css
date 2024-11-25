@@ -1,10 +1,7 @@
 .headlineH1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: rgb(205,219,214);
     font-size: 50px;
     font-weight: bold;
-    padding-bottom: 30px;
 }
 
 .headlineH3{
@@ -12,4 +9,9 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+}
+
+.underline{
+    font-size: 20px;
+    text-decoration: underline;
 }

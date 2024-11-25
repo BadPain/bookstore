@@ -8,7 +8,23 @@ a {
     text-decoration: none;
 }
 
-.max-width-class {
+body{
+    background-color: rgb(5,23,30);
+    height: auto;
+    width: 100%;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(205,219,214);
+    background-color: rgb(25, 89, 113);
+    padding: 30px;
+}
+
+.mainsection{
     max-width: 1440px;
     margin: auto;
 }
