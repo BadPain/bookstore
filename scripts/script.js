@@ -1,37 +1,33 @@
 function init() {
     renderBooks();
-    getBookTemplate();
-    getCommentTemplate();
 }
 
 function renderBooks() {
     let booksContent = document.getElementById('content');
 
+
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
-        booksContent.innerHTML += getBookTemplate(indexBook);
-    };
-}
+        booksContent.innerHTML += getBookTemplate(indexBook)
 
-function renderComment(bookIndex) {
-    let CommentContent = document.getElementById('comment_content');
-    CommentContent.innerHTML = "";
-    let comments = books[bookIndex].comments;
+        let commentsContent = document.getElementById(`comments-${indexBook}`);
 
-    for (let indexComment = 0; indexComment < comments.length; indexComment++) {
-        CommentContent.innerHTML += getCommentTemplate(bookIndex, indexComment);
-    };
-}
+        if (commentsContent) {
+            for (let IndexComment = 0; IndexComment < books[indexBook].comments.length; IndexComment++) {
+                let name = books[indexBook].comments[IndexComment].name;
+                let comment = books[indexBook].comments[IndexComment].comment;
 
-function getCommentTemplate(bookIndex, indexComment) {
-    let comment = books[bookIndex].comments[indexComment];
-    return `<div class="comment_section">
-    <p class="comment" id="comment_section">Kommentare:</p>
-    <p><strong>${comment.name}:</strong> ${comment.comment}</p>
-    </div>`;
+                commentsContent.innerHTML += `
+                    <div class="comment">
+                        <p><strong>${name}:</strong> ${comment}</p>
+                    </div>`;
+            }
+        }
+    }
 }
 
 function getBookTemplate(indexBook) {
-    return `<section class="bookViewClass">
+    return `
+    <section class="bookViewClass">
 
         <div class="book_Name">${books[indexBook].name}</div>
         <hr>
@@ -43,8 +39,9 @@ function getBookTemplate(indexBook) {
             <p class="book_Price">${books[indexBook].price} €</p>
             <div class="book_New_Liked">
                 <p>${books[indexBook].likes}</p>
-                <img class="book_heart" src="./img/icons/heart_on.svg" alt="">
-                <img class="book_heart" src="./img/icons/heart_off.svg" alt="">
+                <button class="button_heart"><img src="./img/icons/heart_on.svg" alt=""></button>
+                <!-- <img class="book_heart" src="./img/icons/heart_on.svg" alt="">
+                <img class="book_heart" src="./img/icons/heart_off.svg" alt=""> -->
             </div>
         </div>
         <div class="book_Infos_Main">
@@ -61,8 +58,9 @@ function getBookTemplate(indexBook) {
         </div>
         <hr>
         <br>
-
-    </section>
+        <div class="comment" id="comments-${indexBook}">
+        </div>
+        </section>
     <br>
     <br>`;
 }
