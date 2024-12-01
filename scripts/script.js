@@ -5,25 +5,43 @@ function init() {
 function renderBooks() {
     let booksContent = document.getElementById('content');
 
-
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
         booksContent.innerHTML += getBookTemplate(indexBook)
-
-        let commentsContent = document.getElementById(`comments-${indexBook}`);
-
-        if (commentsContent) {
-            for (let IndexComment = 0; IndexComment < books[indexBook].comments.length; IndexComment++) {
-                let name = books[indexBook].comments[IndexComment].name;
-                let comment = books[indexBook].comments[IndexComment].comment;
-
-                commentsContent.innerHTML += `
-                    <div class="comment">
-                        <p><strong>${name}:</strong> ${comment}</p>
-                    </div>`;
-            }
-        }
     }
 }
+
+function getCommentAdd(indexBook) {
+    let commentsContent = "";
+        for (let IndexComment = 0; IndexComment < books[indexBook].comments.length; IndexComment++) {
+            let name = books[indexBook].comments[IndexComment].name;
+            let comment = books[indexBook].comments[IndexComment].comment;
+
+            commentsContent += `
+            <div class="comment">
+                <p><strong>${name}:</strong> ${comment}</p>
+            </div>`;
+        }
+        return commentsContent;
+    }
+
+function addComment(indexBook) {
+    let nameInput = document.getElementById(`comment-name-${indexBook}`).value.trim();
+    let commentInput = document.getElementById(`comment-text-${indexBook}`).value.trim();
+
+    if (nameInput === "" || commentInput === "") {
+        return;
+    }
+
+    books[indexBook].comments.push({ name: nameInput, comment: commentInput });
+
+    document.getElementById(`comment-name-${indexBook}`).value = "";
+    document.getElementById(`comment-text-${indexBook}`).value = "";
+
+    document.getElementById(`comments-${indexBook}`).innerHTML = getCommentAdd(indexBook)
+
+    getCommentAdd(indexBook);
+}
+
 
 function getBookTemplate(indexBook) {
     return `
@@ -58,7 +76,18 @@ function getBookTemplate(indexBook) {
         </div>
         <hr>
         <br>
-        <div class="comment" id="comments-${indexBook}">
+        <div class="add-comment">
+            <input id="comment-name-${indexBook}" type="text" placeholder="Dein Name" maxlength="20">
+            <textarea id="comment-text-${indexBook}" placeholder="Dein Kommentar" maxlength="40"></textarea>
+            <button onclick="addComment(${indexBook})">Kommentar hinzufügen</button>
+        </div>
+        <div class="comments-container">
+            <div class="comment" id="comments-${indexBook}">
+            ${getCommentAdd(indexBook)}
+            </div>
+        </div>
+        
+       
         </div>
         </section>
     <br>
