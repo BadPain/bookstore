@@ -12,17 +12,17 @@ function renderBooks() {
 
 function getCommentAdd(indexBook) {
     let commentsContent = "";
-        for (let IndexComment = 0; IndexComment < books[indexBook].comments.length; IndexComment++) {
-            let name = books[indexBook].comments[IndexComment].name;
-            let comment = books[indexBook].comments[IndexComment].comment;
+    for (let IndexComment = 0; IndexComment < books[indexBook].comments.length; IndexComment++) {
+        let name = books[indexBook].comments[IndexComment].name;
+        let comment = books[indexBook].comments[IndexComment].comment;
 
-            commentsContent += `
+        commentsContent += `
             <div class="comment">
                 <p><strong>${name}:</strong> ${comment}</p>
             </div>`;
-        }
-        return commentsContent;
     }
+    return commentsContent;
+}
 
 function addComment(indexBook) {
     let nameInput = document.getElementById(`comment-name-${indexBook}`).value.trim();
@@ -43,6 +43,21 @@ function addComment(indexBook) {
 }
 
 
+function changeImage(indexBook) {
+    let img = document.getElementById(`imgClickAndChange-${indexBook}`)
+    let like = document.getElementById(`likeClickAndChange-${indexBook}`)
+    let currentImg = img.src;
+    if (currentImg.endsWith("heart_off.svg")) {
+        img.src = "./img/icons/heart_on.svg";
+        like = +1;
+
+    } else {
+        img.src = "./img/icons/heart_off.svg";
+    }
+}
+
+
+
 function getBookTemplate(indexBook) {
     return `
     <section class="bookViewClass">
@@ -56,10 +71,8 @@ function getBookTemplate(indexBook) {
         <div class="book_Liked">
             <p class="book_Price">${books[indexBook].price} €</p>
             <div class="book_New_Liked">
-                <p>${books[indexBook].likes}</p>
-                <button class="button_heart"><img src="./img/icons/heart_on.svg" alt=""></button>
-                <!-- <img class="book_heart" src="./img/icons/heart_on.svg" alt="">
-                <img class="book_heart" src="./img/icons/heart_off.svg" alt=""> -->
+                <p id="likeClickAndChange-${indexBook}">${books[indexBook].likes}</p>
+                <img class="button_heart" id="imgClickAndChange-${indexBook}" onclick="changeImage(${indexBook})" src="./img/icons/heart_on.svg" alt=""/>
             </div>
         </div>
         <div class="book_Infos_Main">

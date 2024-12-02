@@ -60,7 +60,7 @@
     justify-content: center;
     align-items: center;
     width: 50px;
-    background: url('/img/icons/heart_on.svg');
+    height: 50px;
     background-repeat: no-repeat;
     text-decoration: none;
 }
