@@ -44,16 +44,20 @@ function addComment(indexBook) {
 
 
 function changeImage(indexBook) {
-    let img = document.getElementById(`imgClickAndChange-${indexBook}`)
-    let like = document.getElementById(`likeClickAndChange-${indexBook}`)
+    let img = document.getElementById(`imgClickAndChange-${indexBook}`);
+    let like = document.getElementById(`likes-${[indexBook]}`);
     let currentImg = img.src;
+    console.log(books[indexBook].likes);
+    
     if (currentImg.endsWith("heart_off.svg")) {
         img.src = "./img/icons/heart_on.svg";
-        like = +1;
-
+        books[indexBook].likes += 1;
+        
     } else {
         img.src = "./img/icons/heart_off.svg";
+        books[indexBook].likes -= 1;
     }
+    like.textContent = books[indexBook].likes;
 }
 
 
@@ -71,7 +75,7 @@ function getBookTemplate(indexBook) {
         <div class="book_Liked">
             <p class="book_Price">${books[indexBook].price} €</p>
             <div class="book_New_Liked">
-                <p id="likeClickAndChange-${indexBook}">${books[indexBook].likes}</p>
+                <p id="likes-${[indexBook]}">${books[indexBook].likes}</p>
                 <img class="button_heart" id="imgClickAndChange-${indexBook}" onclick="changeImage(${indexBook})" src="./img/icons/heart_on.svg" alt=""/>
             </div>
         </div>
