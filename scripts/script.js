@@ -1,14 +1,47 @@
 function init() {
     renderBooks();
+    getFromLocalStorage();
 }
+
 
 function renderBooks() {
     let booksContent = document.getElementById('content');
 
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
         booksContent.innerHTML += getBookTemplate(indexBook)
-    }
+            heartStatus(indexBook);
+    }  
 }
+
+
+function heartStatus(indexBook) {
+    let heartContent = "";
+
+        let heartSrc = books[indexBook].liked ? "./img/icons/heart_on.svg" : "./img/icons/heart_off.svg";
+
+        heartContent += `
+        <div>
+        <img class="button_heart" id="imgClickAndChange-${indexBook}" onclick="changeImage(${indexBook})" src="${heartSrc}" alt=""/>
+        </div>
+        `;
+    return heartContent;
+}
+
+
+function saveToLocalStorage() {
+    localStorage.setItem('books', JSON.stringify(books));    
+}
+
+function getFromLocalStorage() {
+   books = localStorage.getItem('books');
+    books = JSON.parse(books) || [];
+    return books;
+}
+
+console.log(books);
+
+
+
 
 function getCommentAdd(indexBook) {
     let commentsContent = "";
@@ -23,6 +56,7 @@ function getCommentAdd(indexBook) {
     }
     return commentsContent;
 }
+
 
 function addComment(indexBook) {
     let nameInput = document.getElementById(`comment-name-${indexBook}`).value.trim();
@@ -40,6 +74,7 @@ function addComment(indexBook) {
     document.getElementById(`comments-${indexBook}`).innerHTML = getCommentAdd(indexBook)
 
     getCommentAdd(indexBook);
+    saveToLocalStorage();
 }
 
 
@@ -47,19 +82,20 @@ function changeImage(indexBook) {
     let img = document.getElementById(`imgClickAndChange-${indexBook}`);
     let like = document.getElementById(`likes-${[indexBook]}`);
     let currentImg = img.src;
-    console.log(books[indexBook].likes);
-    
+
     if (currentImg.endsWith("heart_off.svg")) {
         img.src = "./img/icons/heart_on.svg";
         books[indexBook].likes += 1;
-        
+
     } else {
         img.src = "./img/icons/heart_off.svg";
         books[indexBook].likes -= 1;
     }
-    like.textContent = books[indexBook].likes;
-}
 
+    
+    like.textContent = books[indexBook].likes;
+    saveToLocalStorage();
+}
 
 
 function getBookTemplate(indexBook) {
@@ -76,7 +112,8 @@ function getBookTemplate(indexBook) {
             <p class="book_Price">${books[indexBook].price} €</p>
             <div class="book_New_Liked">
                 <p id="likes-${[indexBook]}">${books[indexBook].likes}</p>
-                <img class="button_heart" id="imgClickAndChange-${indexBook}" onclick="changeImage(${indexBook})" src="./img/icons/heart_on.svg" alt=""/>
+                ${heartStatus(indexBook)}
+                
             </div>
         </div>
         <div class="book_Infos_Main">
