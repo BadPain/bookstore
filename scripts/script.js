@@ -1,6 +1,6 @@
 function init() {
-    renderBooks();
     getFromLocalStorage();
+    renderBooks();
 }
 
 
@@ -9,38 +9,37 @@ function renderBooks() {
 
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
         booksContent.innerHTML += getBookTemplate(indexBook)
-            heartStatus(indexBook);
-    }  
+        heartStatus(indexBook);
+    }
 }
 
 
 function heartStatus(indexBook) {
     let heartContent = "";
 
-        let heartSrc = books[indexBook].liked ? "./img/icons/heart_on.svg" : "./img/icons/heart_off.svg";
+    let heartSrc = books[indexBook].liked ? "./img/icons/heart_on.svg" : "./img/icons/heart_off.svg";
 
-        heartContent += `
+    heartContent += `
         <div>
         <img class="button_heart" id="imgClickAndChange-${indexBook}" onclick="changeImage(${indexBook})" src="${heartSrc}" alt=""/>
         </div>
         `;
+    saveToLocalStorage()
     return heartContent;
+
 }
 
 
 function saveToLocalStorage() {
-    localStorage.setItem('books', JSON.stringify(books));    
+    localStorage.setItem('user_infos', JSON.stringify(books));
 }
 
 function getFromLocalStorage() {
-   books = localStorage.getItem('books');
-    books = JSON.parse(books) || [];
-    return books;
+    let localUserInfo = localStorage.getItem('user_infos');
+    if (localUserInfo) {
+        books = JSON.parse(localUserInfo);
+    }
 }
-
-console.log(books);
-
-
 
 
 function getCommentAdd(indexBook) {
@@ -54,7 +53,10 @@ function getCommentAdd(indexBook) {
                 <p><strong>${name}:</strong> ${comment}</p>
             </div>`;
     }
+    saveToLocalStorage()
     return commentsContent;
+
+
 }
 
 
@@ -74,7 +76,7 @@ function addComment(indexBook) {
     document.getElementById(`comments-${indexBook}`).innerHTML = getCommentAdd(indexBook)
 
     getCommentAdd(indexBook);
-    saveToLocalStorage();
+
 }
 
 
@@ -86,15 +88,18 @@ function changeImage(indexBook) {
     if (currentImg.endsWith("heart_off.svg")) {
         img.src = "./img/icons/heart_on.svg";
         books[indexBook].likes += 1;
+        books[indexBook].liked = true;
 
     } else {
         img.src = "./img/icons/heart_off.svg";
         books[indexBook].likes -= 1;
+        books[indexBook].liked = false;
     }
 
-    
+    saveToLocalStorage()
     like.textContent = books[indexBook].likes;
-    saveToLocalStorage();
+
+
 }
 
 
