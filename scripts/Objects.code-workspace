@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../Objects"
+		},
+		{
+			"path": "../../Notizblock"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Bookstore"
+	}
+}
